@@ -1,0 +1,77 @@
+﻿body {
+    background: url('../images/body.png') repeat-x;
+    color: #000;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+/*HEAD SECTION*/
+
+.title {
+    margin: 16px 0;
+    padding: 0 16px;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    border-radius: 2px; 
+}
+
+.logo_gr {
+    text-align: center;
+}
+
+.inp_gr {
+    color: rgb(128, 128, 128);
+}
+
+    .inp_gr h3 span {
+        color: #4800ff;
+    }
+
+.today_gr {
+    padding: 16px 0;
+    font-size: 18px;
+}
+
+    .today_gr span {
+        color: rgb(128, 128, 128);
+    }
+
+/*FOREHEAD SECTION*/
+
+.forehead_header a {
+    color: #fff;
+    font-weight: 400;
+    text-decoration: underline;
+    padding-right:20px;
+}
+
+.date_list {
+    list-style-type: none;
+	margin: 0 0;
+	padding: 0;
+}
+.date_list li{
+    display: inline-block;
+    padding: 0 4px;
+    margin: 0 3px;
+    border-radius: 3px;
+    text-decoration:none;
+    transition: all;
+}
+
+.date_list li:hover {
+    cursor: pointer;
+    background-color: #0026ff;
+}
+
+.date_list li.active {
+    background-color: #fff;
+    color:#4800ff;
+}
+
+tr td img {
+    margin: -5px 0 0 0;
+    padding: 0;
+}
+

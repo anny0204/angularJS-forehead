@@ -1,0 +1,18 @@
+﻿/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+    .inp_gr {
+        text-align: center;
+    }
+
+    .today_gr {
+        text-align: center;
+    }
+
+    .date_list li {
+        display: block;
+    }
+        
+    .date_list li p {
+        display: inline;
+    }
+}

@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html ng-app="foreheadApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>My weather</title>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
+
+    <script src="libs/angular.js"></script>
+
+    <link href="libs/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="libs/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/media.css" rel="stylesheet" />
+
+    <script src="scripts/app_ang.js"></script>
+    <script src="node_modules/fusioncharts/fusioncharts.js"></script>
+    <script src="libs/angular-fusioncharts.min.js"></script>
+
+</head>
+<body>
+    <div ng-controller="foreheadCtrl">
+
+        <!--Top common section-->
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="title row">
+                    <div class="col-sm-3 logo_gr">
+                        <img src="images/logo.png" />
+                    </div>
+                    <div class="col-sm-6 inp_gr">
+                        <h3>Your city: <span ng-cloak>{{selectedCityName}}</span></h3>
+                        <span>
+                            <input ng-model="currentCityName" id="searcingCity"/>
+                            <button ng-click="findId()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button><br />
+                        </span>
+                    </div>
+                    <div class="col-sm-3 today_gr">
+                        <p id="today_date"><span>Today: </span></p>
+                        <div id="today_img"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Forehead section-->
+
+        <div class="row" ng-show="isViewVisible">
+            <div class="col-sm-8 col-sm-offset-2 panel-primary">
+                <div class="panel-heading forehead_header">
+                    <ul class="date_list">
+                        <li ng-repeat="date in datesArr" ng-class="selectedDateClass(date.date)" ng-click="selectDate(date)">
+                            <p>{{date.date | date : 'EEEE'}}<p />
+                            <p>{{date.date | date : 'dd.MM'}}</p>
+                            <p></p>{{+date.temp_min  - 273.15| number : 0}} ... {{+date.temp_max  - 273.15| number : 0}}<p />
+                            <p>{{+date.av_pressure | number : 0}} hPa</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Weather</th>
+                                <th>Description</th>
+                                <th>Temperature</th>
+                                <th>Pressure</th>
+                                <th>Wind</th>
+                                <th>Humidity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="forehead in foreheadArr | filter : currentDate">
+                                <td>{{forehead.dt_txt.split(' ')[1].slice(0,5)}}</td>
+                                <td><img src={{getImageSrc(forehead.weather[0].icon)}} width="40" height="40" /></td>
+                                <td>{{forehead.weather[0].description}}</td>
+                                <td>{{+forehead.main.temp - 273.15| number : 0}} &deg;C</td>
+                                <td>{{forehead.main.pressure}}</td>
+                                <td>{{forehead.wind.speed}} m/s</td>
+                                <td>{{forehead.main.humidity}} %</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="panel-footer">
+                    <fusioncharts width="100%"
+                                  height="400"
+                                  type="column2d"
+                                  datasource="{{myDataSource}}">
+                    </fusioncharts>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
